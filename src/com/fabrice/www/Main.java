@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String path = "C:\\Users\\PC\\Desktop\\";
         String extension = ".txt";
+
         File file = new File(path+"availity.csv");
         FileReader reader = new FileReader(file);
         BufferedReader br = new BufferedReader(reader);
@@ -23,23 +24,22 @@ public class Main {
             list.add(enrollee);
         }
 
+
         UIDComparator comparator = new UIDComparator();
-        list.sort(comparator);
+        //list.sort(comparator);
 
         Set<Enrollee> set = new TreeSet<>();
 
         for(int i = 0; i < list.size(); i++) {
             Enrollee highestVersion = list.get(i);
-            for(int j= 1; j < list.size();  j++) {
-                if (highestVersion.uid.equals(list.get(j).uid) && highestVersion.insuranceCompany.equals(list.get(j).insuranceCompany)) {
-                    if (list.get(j).version > highestVersion.version) {
+            for(int j = 1; j < list.size();  j++) {
+                if(comparator.compare(highestVersion, list.get(j)) < 0) {
                         highestVersion = list.get(j);
-                    }
                 }
             }
             set.add(highestVersion);
         }
-
+        
         for(Enrollee enrollee : set) {
             String fileName = path+enrollee.insuranceCompany+extension;
             FileWriter writer = new FileWriter(fileName, true);
