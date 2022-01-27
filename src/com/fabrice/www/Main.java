@@ -46,8 +46,8 @@ public class Main {
         for(Enrollee enrollee : set) {
             String fileName = path+enrollee.insuranceCompany+extension;
             FileWriter writer = new FileWriter(fileName, true);
-            File file1 = new File(fileName);
-            if(!file1.createNewFile()) {
+            file = new File(fileName);
+            if(!file.createNewFile()) {
                 writer.append(enrollee.uid).append(",").append(enrollee.firstName).append(",").append(enrollee.lastName).append(",").append(String.valueOf(enrollee.version)).append(",").append(enrollee.insuranceCompany).append("\n");
             }
             writer.close();
