@@ -5,7 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -39,7 +42,7 @@ public class Main {
             }
             set.add(highestVersion);
         }
-        
+
         for(Enrollee enrollee : set) {
             String fileName = path+enrollee.insuranceCompany+extension;
             FileWriter writer = new FileWriter(fileName, true);
